@@ -5,7 +5,7 @@ using Unity.Netcode;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Photon.Pun;
 public class CharacterSelectUI : MonoBehaviour {
 
 
@@ -29,7 +29,8 @@ public class CharacterSelectUI : MonoBehaviour {
     private void Start() {
         Lobby lobby = KitchenGameLobby.Instance.GetLobby();
 
-        lobbyNameText.text = "Lobby Name: " + lobby.Name;
-        lobbyCodeText.text = "Lobby Code: " + lobby.LobbyCode;
+       // lobbyNameText.text = "Lobby Name: " + lobby.Name;
+       // lobbyCodeText.text = "Lobby Code: " + lobby.LobbyCode;
+        lobbyNameText.text = "Lobby Name: " + PhotonNetwork.CurrentRoom.Name;
     }
 }

@@ -11,6 +11,7 @@ public class NetworkManager_wy : MonoBehaviourPunCallbacks
     [Header("Connection Status")]
     public Text connectionStatusText;
 
+    
     // Login UI: player enters nickname
     [Header("Login UI Panel")]
     public InputField playerNameInput;
@@ -29,7 +30,9 @@ public class NetworkManager_wy : MonoBehaviourPunCallbacks
     // Panel shown after joining a room
     [Header("Inside Room UI Panel")]
     public GameObject InsideRoom_UI_Panel;
-    public Text roomInfoText;
+    public Text roomNameText;
+    public Text memberText;
+    
     public GameObject playerListPrefab;
     public GameObject playerListContent;
     public GameObject startGameButton;
@@ -146,10 +149,18 @@ public class NetworkManager_wy : MonoBehaviourPunCallbacks
         // Only the master client can start the game (load scene)
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.LoadLevel("Game Scene");
+            Loader.LoadNetwork(Loader.Scene.GameScene); // 使用 Loader 枚举加载联机场景
+            //PhotonNetwork.LoadLevel("GameScene");
+            //Loader.Load(Loader.Scene.GameScene);
+            
         }
     }
+    public void OnBackToMenuButtonClicked()
+    {
+        Loader.Load(Loader.Scene.MainMenuScene);
+    }
 
+    
     #endregion
 
     #region Photon Callbacks
@@ -174,14 +185,16 @@ public class NetworkManager_wy : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log(PhotonNetwork.LocalPlayer.NickName + " joined " + PhotonNetwork.CurrentRoom.Name);
-        ActivatePanel(InsideRoom_UI_Panel.name);
+        //ActivatePanel(InsideRoom_UI_Panel.name);
+        Loader.Load(Loader.Scene.CharacterSelectScene);
 
         // Show start button only for MasterClient
         startGameButton.SetActive(PhotonNetwork.LocalPlayer.IsMasterClient);
 
         // Update room info text
-        roomInfoText.text = "Room name: " + PhotonNetwork.CurrentRoom.Name +
-                            " Players/Max: " + PhotonNetwork.CurrentRoom.PlayerCount + "/" + PhotonNetwork.CurrentRoom.MaxPlayers;
+        roomNameText.text = PhotonNetwork.CurrentRoom.Name;
+        memberText.text = " Players/Max: " + PhotonNetwork.CurrentRoom.PlayerCount + "/" + PhotonNetwork.CurrentRoom.MaxPlayers;
+
 
         if (playerListGameObjects == null)
             playerListGameObjects = new Dictionary<int, GameObject>();
@@ -237,16 +250,16 @@ public class NetworkManager_wy : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        roomInfoText.text = "Room name: " + PhotonNetwork.CurrentRoom.Name +
-                            " Players/Max: " + PhotonNetwork.CurrentRoom.PlayerCount + "/" + PhotonNetwork.CurrentRoom.MaxPlayers;
+        roomNameText.text = PhotonNetwork.CurrentRoom.Name;
+        memberText.text = " Players/Max: " + PhotonNetwork.CurrentRoom.PlayerCount + "/" + PhotonNetwork.CurrentRoom.MaxPlayers;
 
         CreatePlayerListEntry(newPlayer);
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        roomInfoText.text = "Room name: " + PhotonNetwork.CurrentRoom.Name +
-                            " Players/Max: " + PhotonNetwork.CurrentRoom.PlayerCount + "/" + PhotonNetwork.CurrentRoom.MaxPlayers;
+        roomNameText.text = PhotonNetwork.CurrentRoom.Name;
+        memberText.text = " Players/Max: " + PhotonNetwork.CurrentRoom.PlayerCount + "/" + PhotonNetwork.CurrentRoom.MaxPlayers;
 
         Destroy(playerListGameObjects[otherPlayer.ActorNumber]);
         playerListGameObjects.Remove(otherPlayer.ActorNumber);
