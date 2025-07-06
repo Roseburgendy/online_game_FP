@@ -110,7 +110,7 @@ public class StoveCounter : BaseCounter, IHasProgress {
         }
     }
 
-    public override void Interact(Player player) {
+    public override void Interact(KitchenPlayer player) {
         if (!HasKitchenObject()) {
             // There is no KitchenObject here
             if (player.HasKitchenObject()) {

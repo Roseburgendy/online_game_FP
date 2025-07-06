@@ -9,7 +9,7 @@ public class PlayerAnimator : NetworkBehaviour {
     private const string IS_WALKING = "IsWalking";
 
 
-    [SerializeField] private Player player;
+    [SerializeField] private KitchenPlayer player;
 
 
     private Animator animator;

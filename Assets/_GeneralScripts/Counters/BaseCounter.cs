@@ -20,11 +20,11 @@ public class BaseCounter : NetworkBehaviour, IKitchenObjectParent {
     private KitchenObject kitchenObject;
 
 
-    public virtual void Interact(Player player) {
+    public virtual void Interact(KitchenPlayer  player) {
         Debug.LogError("BaseCounter.Interact();");
     }
 
-    public virtual void InteractAlternate(Player player) {
+    public virtual void InteractAlternate(KitchenPlayer  player) {
         //Debug.LogError("BaseCounter.InteractAlternate();");
     }
 

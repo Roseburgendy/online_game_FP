@@ -24,7 +24,7 @@ public class CuttingCounter : BaseCounter, IHasProgress {
     private int cuttingProgress;
 
 
-    public override void Interact(Player player) {
+    public override void Interact(KitchenPlayer player) {
         if (!HasKitchenObject()) {
             // There is no KitchenObject here
             if (player.HasKitchenObject()) {
@@ -71,7 +71,7 @@ public class CuttingCounter : BaseCounter, IHasProgress {
 
     }
 
-    public override void InteractAlternate(Player player) {
+    public override void InteractAlternate(KitchenPlayer player) {
         if (HasKitchenObject() && HasRecipeWithInput(GetKitchenObject().GetKitchenObjectSO())) {
             // There is a KitchenObject here AND it can be cut
             CutObjectServerRpc();

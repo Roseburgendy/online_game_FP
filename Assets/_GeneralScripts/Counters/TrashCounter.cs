@@ -15,7 +15,7 @@ public class TrashCounter : BaseCounter {
 
 
 
-    public override void Interact(Player player) {
+    public override void Interact(KitchenPlayer player) {
         if (player.HasKitchenObject()) {
             KitchenObject.DestroyKitchenObject(player.GetKitchenObject());
 

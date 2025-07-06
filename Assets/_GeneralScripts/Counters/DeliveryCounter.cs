@@ -13,7 +13,7 @@ public class DeliveryCounter : BaseCounter {
     }
 
 
-    public override void Interact(Player player) {
+    public override void Interact(KitchenPlayer player) {
         if (player.HasKitchenObject()) {
             if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject)) {
                 // Only accepts Plates

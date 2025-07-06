@@ -47,7 +47,7 @@ public class PlatesCounter : BaseCounter {
         OnPlateSpawned?.Invoke(this, EventArgs.Empty);
     }
 
-    public override void Interact(Player player) {
+    public override void Interact(KitchenPlayer  player) {
         if (!player.HasKitchenObject()) {
             // Player is empty handed
             if (platesSpawnedAmount > 0) {

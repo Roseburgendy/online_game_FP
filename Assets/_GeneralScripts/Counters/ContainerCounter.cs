@@ -13,7 +13,7 @@ public class ContainerCounter : BaseCounter {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
 
 
-    public override void Interact(Player player) {
+    public override void Interact(KitchenPlayer  player) {
         if (!player.HasKitchenObject()) {
             // Player is not carrying anything
             KitchenObject.SpawnKitchenObject(kitchenObjectSO, player);
