@@ -9,7 +9,7 @@ public class MainMenuUI : MonoBehaviour {
 
     [SerializeField] private Button playMultiplayerButton;
     [SerializeField] private Button playSingleplayerButton;
-    [SerializeField] private Button quitButton;
+    [SerializeField] private Button backButton;
 
 
     private void Awake() {
@@ -21,8 +21,8 @@ public class MainMenuUI : MonoBehaviour {
             KitchenGameMultiplayer.playMultiplayer = false;
             Loader.Load(Loader.Scene.LobbyScene);
         });
-        quitButton.onClick.AddListener(() => {
-            Application.Quit();
+        backButton.onClick.AddListener(() => {
+            Loader.Load(Loader.Scene.TitleScene);
         });
 
         Time.timeScale = 1f;
