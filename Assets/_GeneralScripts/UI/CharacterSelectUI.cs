@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.Netcode;
-using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
@@ -17,9 +13,22 @@ public class CharacterSelectUI : MonoBehaviour {
 
     private void Awake() {
         mainMenuButton.onClick.AddListener(() => {
-            KitchenGameLobby.Instance.LeaveLobby();
-            NetworkManager.Singleton.Shutdown();
-            Loader.Load(Loader.Scene.MainMenuScene);
+            //KitchenGameLobby.Instance.LeaveLobby();
+           // NetworkManager.Singleton.Shutdown();
+            // Leave lobby and return to options panel
+            if (PhotonNetwork.InRoom)
+            {
+                PhotonNetwork.LeaveRoom();
+            }
+            else if (PhotonNetwork.InLobby)
+            {
+                PhotonNetwork.LeaveLobby();
+            }
+            else
+            {
+                Loader.Load(Loader.Scene.MainMenuScene);
+            }
+            
         });
         readyButton.onClick.AddListener(() => {
             CharacterSelectReady.Instance.SetPlayerReady();
@@ -27,10 +36,7 @@ public class CharacterSelectUI : MonoBehaviour {
     }
 
     private void Start() {
-        Lobby lobby = KitchenGameLobby.Instance.GetLobby();
-
-       // lobbyNameText.text = "Lobby Name: " + lobby.Name;
-       // lobbyCodeText.text = "Lobby Code: " + lobby.LobbyCode;
+        //Lobby lobby = KitchenGameLobby.Instance.GetLobby();
         lobbyNameText.text = "Lobby Name: " + PhotonNetwork.CurrentRoom.Name;
     }
 }
