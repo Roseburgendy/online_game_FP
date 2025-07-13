@@ -186,7 +186,7 @@ public class NetworkManager_wy : MonoBehaviourPunCallbacks
     {
         Debug.Log(PhotonNetwork.LocalPlayer.NickName + " joined " + PhotonNetwork.CurrentRoom.Name);
         //ActivatePanel(InsideRoom_UI_Panel.name);
-        Loader.Load(Loader.Scene.CharacterSelectScene);
+        Loader.Load(Loader.Scene.LXXCharacterSelectScene);
 
         // Show start button only for MasterClient
         startGameButton.SetActive(PhotonNetwork.LocalPlayer.IsMasterClient);
