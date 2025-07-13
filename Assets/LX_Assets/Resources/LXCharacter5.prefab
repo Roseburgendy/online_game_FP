@@ -649,7 +649,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6882177565730450956}
   - component: {fileID: 6261708960881099089}
-  - component: {fileID: 5620691800798999865}
+  - component: {fileID: -1579714804036503972}
   m_Layer: 0
   m_Name: LXCharacter5
   m_TagString: Untagged
@@ -695,7 +695,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5620691800798999865
+--- !u!114 &-1579714804036503972
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

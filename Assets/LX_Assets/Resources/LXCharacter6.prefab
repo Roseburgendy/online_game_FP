@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7256344383733183024}
   - component: {fileID: 564377794555803849}
-  - component: {fileID: 2774490599802172431}
+  - component: {fileID: -879643292924110248}
   m_Layer: 0
   m_Name: LXCharacter6
   m_TagString: Untagged
@@ -60,7 +60,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 16, y: 1.6, z: 1.6}
+  m_LocalScale: {x: 16, y: 16, z: 16}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 339652487359843276}
@@ -88,7 +88,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2774490599802172431
+--- !u!114 &-879643292924110248
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

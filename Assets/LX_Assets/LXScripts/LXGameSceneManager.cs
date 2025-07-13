@@ -8,7 +8,8 @@ public class LXGameSceneManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Transform[] spawnPoints = new Transform[4];
     [SerializeField] private List<GameObject> characterPrefabs = new List<GameObject>();
-    
+    [SerializeField] private GameObject characterWrapper;
+
     private void Start()
     {
         if (PhotonNetwork.IsConnected)
@@ -29,12 +30,13 @@ public class LXGameSceneManager : MonoBehaviourPunCallbacks
 
         int playerIndex = GetPlayerIndex();
         Vector3 spawnPosition = spawnPoints[playerIndex].position;
-        
+
+        GameObject player = PhotonNetwork.Instantiate(characterWrapper.name, spawnPosition, Quaternion.identity);
+
         GameObject characterPrefab = GetCharacterPrefab(characterId);
-        if (characterPrefab != null)
-        {
-            GameObject player = PhotonNetwork.Instantiate(characterPrefab.name, spawnPosition, spawnPoints[playerIndex].rotation);
-        }
+
+        var go = PhotonNetwork.Instantiate(characterPrefab.name, spawnPosition, Quaternion.identity);
+        go.transform.SetParent(player.transform);
     }
 
     private GameObject GetCharacterPrefab(string characterId)
